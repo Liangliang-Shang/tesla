@@ -1,0 +1,20 @@
+20160229-13:51:28: Session FIX.4.4:FIXAcceptor->FIXInitiator schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20160229-13:51:28: Created session: FIX.4.4:FIXAcceptor->FIXInitiator
+20160229-13:55:43: Session FIX.4.4:FIXAcceptor->FIXInitiator schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20160229-13:55:43: Created session: FIX.4.4:FIXAcceptor->FIXInitiator
+20160229-13:56:47: Session FIX.4.4:FIXAcceptor->FIXInitiator schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20160229-13:56:47: Created session: FIX.4.4:FIXAcceptor->FIXInitiator
+20160229-14:12:10: Session FIX.4.4:FIXAcceptor->FIXInitiator schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20160229-14:12:10: Created session: FIX.4.4:FIXAcceptor->FIXInitiator
+20160229-14:26:41: Accepting session FIX.4.4:FIXAcceptor->FIXInitiator from /127.0.0.1:60767
+20160229-14:26:41: Acceptor heartbeat set to 30 seconds
+20160229-14:26:41: Received logon
+20160229-14:26:41: Responding to Logon request
+20160229-14:27:49: Accepting session FIX.4.4:FIXAcceptor->FIXInitiator from /127.0.0.1:60780
+20160229-14:27:49: Acceptor heartbeat set to 30 seconds
+20160229-14:27:49: Received logon
+20160229-14:27:49: Responding to Logon request
+20160229-14:34:12: Accepting session FIX.4.4:FIXAcceptor->FIXInitiator from /127.0.0.1:60889
+20160229-14:34:12: Acceptor heartbeat set to 30 seconds
+20160229-14:34:12: Received logon
+20160229-14:34:12: Responding to Logon request
