@@ -1,4 +1,6 @@
 package com.lshang.tesla;
+import com.lshang.tesla.order.TeslaOrderList;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,7 +73,14 @@ public class FIXInitiator {
 
         SessionID sessionID = new SessionID("FIX.4.4", 
             "FIXInitiator", "FIXAcceptor");
-
+        
+        ArrayList<NewOrderSingle> orderList 
+            = (new TeslaOrderList("tmp/TeslaOrders.csv")).getOrderList();
+        for(NewOrderSingle order : orderList) {
+            Session.sendToTarget(order, sessionID);
+            Thread.sleep(5000);
+        }
+/*
         NewOrderSingle order = new NewOrderSingle();
         order.set(new ClOrdID("Tesla"));
         order.set(new Side(Side.BUY));
@@ -80,9 +89,8 @@ public class FIXInitiator {
         order.set(new OrderQty(100));
         order.set(new Price(25.40));
         order.set(new Symbol("BHP"));
-        Session.sendToTarget(order, sessionID);
+*/
         
-        Thread.sleep(5000);
 
     }
 }

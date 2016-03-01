@@ -4,6 +4,8 @@ SRCDIR=$(BASEDIR)/src
 BINDIR=$(BASEDIR)/bin
 DATDIR=$(BASEDIR)/data
 LIBDIR=$(BASEDIR)/lib
+LOGDIR=$(BASEDIR)/log
+TMPDIR=$(BASEDIR)/tmp
 
 help:
 	@echo 'Makefile for tesla, a demo of FIX Acceptor/Initiator                '
@@ -19,11 +21,11 @@ help:
 source:
 	cp $(SRCDIR)/*.java $(SRCDIR)/$(PACKAGE) 
 
-class: source
-	javac $(SRCDIR)/$(PACKAGE)/*.java 
+class: 
+	javac -d $(TMPDIR)  $(SRCDIR)/*.java 
 
 jar: class
-	cd  $(SRCDIR) && jar cvf tesla.jar com && cp tesla.jar $(LIBDIR)
+	cd  $(TMPDIR) && jar cvf tesla.jar com && mv tesla.jar $(LIBDIR)
 
 acceptor: jar
 	java com/lshang/tesla/FIXAcceptor
@@ -33,3 +35,5 @@ initiator: jar
 
 clean:
 	cd $(DATDIR) && rm *
+	cd $(LIBDIR) && rm tesla.jar
+	cd $(LOGDIR) && rm *.log
