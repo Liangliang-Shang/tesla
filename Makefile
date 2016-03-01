@@ -22,7 +22,7 @@ source:
 	cp $(SRCDIR)/*.java $(SRCDIR)/$(PACKAGE) 
 
 class: 
-	javac -d $(TMPDIR)  $(SRCDIR)/*.java 
+	cd $(SRCDIR) && find . -name "*.java" -exec javac -d $(TMPDIR) {} \;
 
 jar: class
 	cd  $(TMPDIR) && jar cvf tesla.jar com && mv tesla.jar $(LIBDIR)
@@ -34,6 +34,8 @@ initiator: jar
 	java com/lshang/tesla/FIXInitiator
 
 clean:
-	cd $(DATDIR) && rm *
-	cd $(LIBDIR) && rm tesla.jar
-	cd $(LOGDIR) && rm *.log
+	cd $(DATDIR) && find . -type f -exec rm {} \;
+	cd $(LIBDIR) && find . -name tesla.jar -exec rm {} \;
+	cd $(LOGDIR) && find . -name "*.log" -exec rm {} \;
+	cd $(SRCDIR) && find . -name "*.class" -exec rm {} \;
+
