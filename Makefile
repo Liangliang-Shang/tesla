@@ -2,6 +2,7 @@ BASEDIR=$(CURDIR)
 PACKAGE=com/lshang/tesla
 SRCDIR=$(BASEDIR)/src
 BINDIR=$(BASEDIR)/bin
+DATDIR=$(BASEDIR)/data
 LIBDIR=$(BASEDIR)/lib
 
 help:
@@ -29,3 +30,6 @@ acceptor: jar
 
 initiator: jar
 	java com/lshang/tesla/FIXInitiator
+
+clean:
+	cd $(DATDIR) && rm *

@@ -1,5 +1,7 @@
 package com.lshang.tesla;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import quickfix.ConfigError;
 import quickfix.SessionSettings;
 import quickfix.Application;
@@ -21,17 +23,51 @@ import quickfix.field.TransactTime;
 import quickfix.fix44.NewOrderSingle;
 
 public class FIXInitiator {
-    public static void main(String[] args) 
-        throws ConfigError, SessionNotFound, InterruptedException {
+    private static final Logger log = 
+            LoggerFactory.getLogger(FIXInitiator.class);
+    private static SocketInitiator initiator; 
+    private boolean initiatorStarted = false;
+
+    public FIXInitiator(String[] args) throws ConfigError {
         SessionSettings settings = new SessionSettings("conf/initiator.conf");
+
+        boolean logHeartbeats =
+            Boolean.valueOf(System.getProperty("logHeartbeats", "true"));
+
         Application app = new FIXInitiatorApp();
         FileStoreFactory fileStoreFactory = new FileStoreFactory(settings);
         FileLogFactory log = new FileLogFactory(settings);
         DefaultMessageFactory msgFactory = new DefaultMessageFactory();
-        SocketInitiator initiator= new SocketInitiator(app, fileStoreFactory, 
+        initiator= new SocketInitiator(app, fileStoreFactory, 
             settings, log, msgFactory);
-        initiator.start();
-        Thread.sleep(3000);
+    }
+
+    public synchronized void logon() {
+        if(!initiatorStarted) {
+            try {
+                initiator.start();
+                initiatorStarted = true;
+            } catch(Exception e) {
+                log.error("Start failed", e);
+            }
+        } else {
+            for(SessionID sessionId : initiator.getSessions()) {
+                Session.lookupSession(sessionId).logon();
+            }
+        }
+    }
+
+    public void logout() {
+        for(SessionID sessionId : initiator.getSessions()) {
+            Session.lookupSession(sessionId).logout("User requested!");
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        FIXInitiator fixInitiator = new FIXInitiator(args);
+        if(!System.getProperties().containsKey("FIXInitiator")) {
+            fixInitiator.logon();
+        }
 
         SessionID sessionID = new SessionID("FIX.4.4", 
             "FIXInitiator", "FIXAcceptor");
