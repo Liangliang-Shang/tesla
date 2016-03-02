@@ -1,7 +1,7 @@
 # tesla
-A simple FIX Initiator/Acceptor Demo
-QuickFIX/J HOME: http://www.quickfixj.org/
-QuickFIX/J API: http://www.quickfixj.org/quickfixj/javadoc/1.5.3/
+A simple FIX Initiator/Acceptor Demo    
+QuickFIX/J HOME: http://www.quickfixj.org/    
+QuickFIX/J API: http://www.quickfixj.org/quickfixj/javadoc/1.5.3/    
 ## Demo
 1.  start FIXAcceptor
 ```Shell
