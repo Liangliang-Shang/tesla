@@ -1,8 +1,9 @@
 # tesla
 A simple FIX Initiator/Acceptor Demo
-
+QuickFIX/J HOME: http://www.quickfixj.org/
+QuickFIX/J API: http://www.quickfixj.org/quickfixj/javadoc/1.5.3/
 ## Demo
-1. start FIXAcceptor
+1.  start FIXAcceptor
 ```Shell
 20160302 19:58:34 lshang@elemos:/home/lshang/devel/tesla 
 $ source bin/startTesla.bash 
@@ -37,7 +38,7 @@ INFO: Socket option: SocketSynchronousWriteTimeout=30000
 Mar 02, 2016 7:59:19 PM quickfix.mina.acceptor.AbstractSocketAcceptor startAcceptingConnections
 INFO: Listening for connections at 0.0.0.0/0.0.0.0:20160 for session(s) [FIX.4.4:FIXAcceptor->FIXInitiator]
 ```
-2. start FIXInitiator
+2.  start FIXInitiator
 ```Shell
 20160302 20:01:40 lshang@elemos:/home/lshang/devel/tesla 
 $ source bin/startTesla.bash 
